@@ -1,0 +1,261 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Hind+Siliguri:wght@400;500;600;700&family=Anek+Bangla:wght@600;700;800&display=swap" rel="stylesheet">
+<script src="./image-slot.js"></script>
+<script src="./pmmf-content.js"></script>
+<template id="__bundler_thumbnail"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><rect width="100" height="100" fill="#0077b6"/><text x="50" y="60" font-family="sans-serif" font-size="24" font-weight="800" fill="#ffd166" text-anchor="middle">PMMF</text></svg></template>
+<title>Purba Medinipur Matsyajibi Forum</title>
+<style>
+html{scroll-behavior:smooth}
+body{margin:0;background:#0077b6;color:#fff;font-family:'Hind Siliguri',sans-serif;-webkit-font-smoothing:antialiased}
+a{color:#ffd166;text-decoration:none}
+a:hover{color:#fff}
+*{box-sizing:border-box}
+@keyframes pmmf-marquee{from{transform:translateX(0)}to{transform:translateX(-50%)}}
+</style>
+</helmet>
+<div style="min-height:100vh;display:flex;flex-direction:column;overflow-x:clip">
+
+<header style="position:sticky;top:0;z-index:30;background:#0077b6">
+  <div style="max-width:1320px;margin:0 auto;padding:0 28px;display:flex;align-items:center;justify-content:space-between;gap:16px;min-height:78px;flex-wrap:wrap">
+    <a href="#top" style="display:flex;align-items:center;gap:12px;color:#fff">
+      <img src="./dmf-logo.png" alt="Dakshinbanga Matsyajibi Forum" style="width:52px;height:52px;object-fit:contain;background:#fff;border-radius:50%">
+      <span style="display:flex;flex-direction:column;line-height:1.15"><span style="font-weight:700;font-size:16px">{{ org.name }}</span><span style="font-size:12px;color:#cfe6f5">{{ org.branch }}</span></span>
+    </a>
+    <nav style="display:flex;align-items:center;flex-wrap:wrap;gap:0 2px;font-size:15px;font-weight:600">
+      <sc-for list="{{ menus }}" as="m" hint-placeholder-count="3">
+        <div style="position:relative" onMouseEnter="{{ m.open }}" onMouseLeave="{{ closeMenu }}">
+          <button onClick="{{ m.toggle }}" style="font:inherit;font-weight:600;cursor:pointer;background:transparent;color:#fff;border:0;padding:12px 14px;display:flex;align-items:center;gap:6px">{{ m.label }}<span style="font-size:10px;opacity:.7">▼</span></button>
+          <sc-if value="{{ m.isOpen }}" hint-placeholder-val="{{ false }}">
+            <div style="position:absolute;top:100%;left:0;min-width:220px;background:#fff;border-radius:12px;box-shadow:0 18px 40px #00000033;padding:8px;display:flex;flex-direction:column;z-index:40">
+              <sc-for list="{{ m.items }}" as="it" hint-placeholder-count="4">
+                <a href="{{ it.href }}" onClick="{{ closeMenu }}" style="padding:10px 14px;border-radius:8px;color:#0f1433;font-weight:500;white-space:nowrap" style-hover="background:#e6f2fa;color:#0077b6">{{ it.label }}</a>
+              </sc-for>
+            </div>
+          </sc-if>
+        </div>
+      </sc-for>
+      <a href="#contact" style="color:#fff;padding:12px 14px">{{ nav.contact }}</a>
+      <button onClick="{{ toggleLang }}" style="font:inherit;font-weight:700;cursor:pointer;background:transparent;color:#fff;border:1.5px solid #fff;border-radius:999px;padding:7px 14px;margin-left:6px">{{ otherLang }}</button>
+      <a href="#join" style="background:#ffd166;color:#0f1433;padding:9px 20px;border-radius:999px;font-weight:700;margin-left:8px">{{ nav.join }}</a>
+    </nav>
+  </div>
+</header>
+
+<section id="top" style="background:#0077b6">
+  <div style="max-width:1320px;margin:0 auto;padding:clamp(24px,3vw,40px) 28px 0;display:flex;flex-direction:column">
+    <span style="font-family:'Anek Bangla';font-weight:800;font-size:clamp(72px,12vw,170px);line-height:.88;letter-spacing:-3px">{{ w.word1 }}</span>
+    <div style="display:flex;align-items:flex-end;justify-content:space-between;gap:24px;flex-wrap:wrap">
+      <span style="font-family:'Anek Bangla';font-weight:800;font-size:clamp(72px,12vw,170px);line-height:.88;letter-spacing:-3px;color:#ffd166">{{ w.word2 }}</span>
+      <div style="display:flex;flex-direction:column;gap:16px;max-width:440px;padding-bottom:18px">
+        <span style="font-size:20px;line-height:1.45">{{ w.heroLine }}</span>
+        <div style="display:flex;gap:10px;flex-wrap:wrap">
+          <a href="#join" style="background:#ffd166;color:#0f1433;padding:12px 24px;border-radius:999px;font-weight:700">{{ hero.cta1 }}</a>
+          <a href="#waters" style="border:1.5px solid #fff;color:#fff;padding:11px 24px;border-radius:999px;font-weight:700">{{ nav.work }}</a>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div style="margin-top:32px;background:#ffd166;color:#0f1433;overflow:hidden;white-space:nowrap;padding:16px 0">
+    <div style="display:inline-flex;gap:56px;animation:pmmf-marquee 32s linear infinite;font-family:'Instrument Serif','Anek Bangla',serif;font-size:32px;padding-left:28px">
+      <sc-for list="{{ ticker }}" as="d" hint-placeholder-count="8"><span>{{ d }} ✦</span></sc-for>
+    </div>
+  </div>
+  <div style="display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:4px;padding-top:4px;height:clamp(240px,30vw,420px)">
+    <div style="min-width:0"><image-slot id="b-1" src="https://lh3.googleusercontent.com/d/10gW4i79lUM2-_gZTJERxB_kpj8M3tfos=w1600" credit="PMMF" shape="rect"></image-slot></div>
+    <div style="min-width:0"><image-slot id="b-2" src="https://lh3.googleusercontent.com/d/1XNrcjST_wme8URU-NGeHYfpzvQRx81iS=w1600" credit="PMMF" shape="rect"></image-slot></div>
+    <div style="min-width:0"><image-slot id="b-3" src="https://lh3.googleusercontent.com/d/1_3U9aRFISti-4MXrF5yVAajMOVkCNPEp=w1600" credit="PMMF" shape="rect"></image-slot></div>
+    <div style="min-width:0"><image-slot id="b-4" src="https://lh3.googleusercontent.com/d/1Y4N6cDrmlikOfJO4vH4EBvzOBxKz77KW=w1600" credit="PMMF" shape="rect"></image-slot></div>
+  </div>
+</section>
+
+<section id="who" style="background:#ffd9b8;color:#2a1a10">
+  <div style="max-width:1320px;margin:0 auto;padding:clamp(64px,8vw,110px) 28px;display:flex;flex-direction:column;gap:48px">
+    <span style="font-family:'Anek Bangla';font-weight:800;font-size:clamp(56px,8vw,120px);line-height:.9;letter-spacing:-2px;color:#0077b6">{{ w.who }}</span>
+    <p style="margin:0;font-family:'Instrument Serif','Anek Bangla',serif;font-size:clamp(30px,3.6vw,50px);line-height:1.12;max-width:1100px;text-wrap:balance">{{ vision.text }}</p>
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,220px),1fr));gap:24px;border-top:2px solid #2a1a10;padding-top:24px">
+      <div style="display:flex;flex-direction:column;gap:10px"><span style="font-family:'Anek Bangla';font-weight:800;font-size:clamp(56px,6vw,88px);line-height:1.1;color:#0077b6">{{ stats.1.value }}</span><span style="font-size:17px;font-weight:600">{{ stats.1.label }}</span></div>
+      <div style="display:flex;flex-direction:column;gap:10px"><span style="font-family:'Anek Bangla';font-weight:800;font-size:clamp(56px,6vw,88px);line-height:1.1;color:#0077b6">{{ stats.2.value }}</span><span style="font-size:17px;font-weight:600">{{ stats.2.label }}</span></div>
+      <div style="display:flex;flex-direction:column;gap:10px"><span style="font-family:'Anek Bangla';font-weight:800;font-size:clamp(56px,6vw,88px);line-height:1.1;color:#0077b6">{{ stats.3.value }}</span><span style="font-size:17px;font-weight:600">{{ stats.3.label }}</span></div>
+      <div style="display:flex;flex-direction:column;gap:10px"><span style="font-family:'Anek Bangla';font-weight:800;font-size:clamp(56px,6vw,88px);line-height:1.1;color:#0077b6">{{ stats.5.value }}</span><span style="font-size:17px;font-weight:600">{{ stats.5.label }}</span></div>
+    </div>
+  </div>
+</section>
+
+<section id="waters" style="background:#0f1433;color:#fff">
+  <div style="max-width:1320px;margin:0 auto;padding:clamp(64px,8vw,110px) 28px;display:flex;flex-direction:column">
+    <span style="font-size:15px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:#ffd166;padding-bottom:20px">{{ w.waters }}</span>
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,260px),1fr));gap:24px;align-items:center;border-top:1.5px solid #ffffff40;padding:22px 0">
+      <span style="font-family:'Anek Bangla';font-weight:800;font-size:clamp(48px,7vw,104px);line-height:1;letter-spacing:-2px">{{ w.marine }}</span>
+      <span style="font-size:18px;line-height:1.5;color:#c8cdf0">{{ w.marineL }}</span>
+      <div style="height:140px;border-radius:8px;overflow:hidden"><image-slot id="b-w1" src="https://lh3.googleusercontent.com/d/1ntq8Qxef2WnRe2CLO0tIA3bKZNeGcyqX=w1600" credit="PMMF" shape="rect"></image-slot></div>
+    </div>
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,260px),1fr));gap:24px;align-items:center;border-top:1.5px solid #ffffff40;padding:22px 0">
+      <span style="font-family:'Anek Bangla';font-weight:800;font-size:clamp(48px,7vw,104px);line-height:1;letter-spacing:-2px;color:#ffd166">{{ w.river }}</span>
+      <span style="font-size:18px;line-height:1.5;color:#c8cdf0">{{ w.riverL }}</span>
+      <div style="height:140px;border-radius:8px;overflow:hidden"><image-slot id="b-w2" src="https://lh3.googleusercontent.com/d/1MmTWwTlef1AmGyXPSx7W-Wr0PwurRcKL=w1600" credit="PMMF" shape="rect"></image-slot></div>
+    </div>
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,260px),1fr));gap:24px;align-items:center;border-top:1.5px solid #ffffff40;border-bottom:1.5px solid #ffffff40;padding:22px 0">
+      <span style="font-family:'Anek Bangla';font-weight:800;font-size:clamp(48px,7vw,104px);line-height:1;letter-spacing:-2px;color:#ee8f5c">{{ w.farm }}</span>
+      <span style="font-size:18px;line-height:1.5;color:#c8cdf0">{{ w.farmL }}</span>
+      <div style="height:140px;border-radius:8px;overflow:hidden"><image-slot id="b-w3" src="https://lh3.googleusercontent.com/d/1rH1tx4oLfV6Z4CLv-O3Dig2zpQ8OGCsn=w1600" credit="PMMF" shape="rect"></image-slot></div>
+    </div>
+  </div>
+</section>
+
+<section id="women" style="background:#ee8f5c;color:#2a0d00">
+  <div style="max-width:1320px;margin:0 auto;padding:clamp(64px,8vw,110px) 28px;display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,460px),1fr));gap:40px;align-items:center">
+    <div style="display:flex;flex-direction:column;gap:10px">
+      <span style="font-family:'Anek Bangla';font-weight:800;font-size:clamp(110px,16vw,230px);line-height:.85;letter-spacing:-5px">{{ stats.0.value }}</span>
+      <span style="font-family:'Anek Bangla';font-weight:800;font-size:clamp(40px,5vw,72px);line-height:1;color:#fff">{{ w.women }}</span>
+      <span style="font-size:19px;line-height:1.5;max-width:480px;padding-top:10px">{{ w.womenL }}</span>
+    </div>
+    <div style="height:clamp(320px,36vw,480px);border-radius:8px;overflow:hidden"><image-slot id="b-women" src="https://lh3.googleusercontent.com/d/1TtNrKdeeUhqDk904p57Lhw1sDn-7oE3t=w1600" credit="PMMF" shape="rect"></image-slot></div>
+  </div>
+</section>
+
+<section id="wins" style="background:#0077b6;color:#fff;padding:clamp(56px,7vw,90px) 0">
+  <div style="max-width:1320px;margin:0 auto;padding:0 28px 28px"><span style="font-family:'Anek Bangla';font-weight:800;font-size:clamp(48px,6.5vw,96px);line-height:.95;letter-spacing:-2px">{{ w.wins }}</span></div>
+  <div style="overflow:hidden;white-space:nowrap;border-top:1.5px solid #ffffff59;border-bottom:1.5px solid #ffffff59;padding:24px 0">
+    <div style="display:inline-flex;gap:64px;animation:pmmf-marquee 60s linear infinite;padding-left:28px">
+      <sc-for list="{{ winsLoop }}" as="h" hint-placeholder-count="10">
+        <span style="display:inline-flex;align-items:baseline;gap:14px"><span style="font-family:'Anek Bangla';font-weight:800;font-size:44px;color:#ffd166">{{ h.year }}</span><span style="font-family:'Instrument Serif','Anek Bangla',serif;font-size:30px">{{ h.title }}</span></span>
+      </sc-for>
+    </div>
+  </div>
+</section>
+
+<section id="leaders" style="background:#ffd9b8;color:#2a1a10">
+  <div style="max-width:1320px;margin:0 auto;padding:clamp(56px,7vw,90px) 28px;display:flex;flex-direction:column;gap:28px">
+    <span style="font-family:'Anek Bangla';font-weight:800;font-size:clamp(44px,6vw,84px);line-height:.95;letter-spacing:-2px;color:#0077b6">{{ leaders.title }}</span>
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,210px),1fr));gap:24px">
+      <sc-for list="{{ leaders.items }}" as="l" hint-placeholder-count="5">
+        <div style="display:flex;flex-direction:column;gap:10px">
+          <div style="aspect-ratio:1/1;border-radius:8px;overflow:hidden"><image-slot id="{{ l.id }}" src="{{ l.pic }}" shape="rect" placeholder="{{ leaders.photo }}"></image-slot></div>
+          <span style="font-family:'Anek Bangla';font-weight:800;font-size:22px;line-height:1.15">{{ l.name }}</span>
+          <span style="font-size:15px;font-weight:600;color:#a0522d">{{ l.role }} · {{ l.place }}</span>
+        </div>
+      </sc-for>
+    </div>
+  </div>
+</section>
+
+<section id="news" style="background:#fff;color:#0f1433">
+  <div style="max-width:1320px;margin:0 auto;padding:clamp(56px,7vw,90px) 28px;display:flex;flex-direction:column;gap:28px">
+    <div style="display:flex;flex-wrap:wrap;justify-content:space-between;align-items:end;gap:12px">
+      <span style="font-family:'Anek Bangla';font-weight:800;font-size:clamp(44px,6vw,84px);line-height:.95;letter-spacing:-2px">{{ news.title }}</span>
+      <a href="{{ contact.facebook }}" target="_blank" style="color:#0077b6;font-weight:700">{{ contact.social.0 }} →</a>
+    </div>
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,300px),1fr));gap:28px">
+      <sc-for list="{{ newsTop }}" as="n" hint-placeholder-count="3">
+        <a href="{{ contact.facebook }}" target="_blank" style="display:flex;flex-direction:column;gap:12px;color:#0f1433">
+          <div style="height:230px;border-radius:8px;overflow:hidden"><image-slot id="{{ n.id }}" src="{{ n.dimg }}" credit="PMMF" shape="rect"></image-slot></div>
+          <span style="font-size:14px;font-weight:700;color:#0077b6">{{ n.date }}</span>
+          <span style="font-family:'Instrument Serif','Anek Bangla',serif;font-size:27px;line-height:1.15">{{ n.title }}</span>
+        </a>
+      </sc-for>
+    </div>
+  </div>
+</section>
+
+<section id="join" style="background:#ffd166;color:#0f1433">
+  <div style="max-width:1320px;margin:0 auto;padding:clamp(64px,8vw,110px) 28px;display:flex;flex-direction:column;gap:22px">
+    <span style="font-family:'Anek Bangla';font-weight:800;font-size:clamp(80px,13vw,190px);line-height:.85;letter-spacing:-4px">{{ w.join }}</span>
+    <div style="display:flex;flex-wrap:wrap;justify-content:space-between;align-items:flex-end;gap:24px">
+      <span style="font-size:20px;line-height:1.5;max-width:620px">{{ join.text }}</span>
+      <div style="display:flex;gap:10px;flex-wrap:wrap">
+        <a href="mailto:pmmf2018@yahoo.com" style="background:#0f1433;color:#fff;padding:14px 28px;border-radius:999px;font-weight:700">{{ hero.cta1 }}</a>
+        <a href="{{ contact.facebook }}" target="_blank" style="border:2px solid #0f1433;color:#0f1433;padding:12px 26px;border-radius:999px;font-weight:700">{{ contact.social.0 }}</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="contact" style="background:#0f1433;color:#c8cdf0">
+  <div style="max-width:1320px;margin:0 auto;padding:56px 28px 36px;display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:16px;font-size:14px;align-items:stretch">
+    <div style="display:flex;flex-direction:column;gap:14px;min-width:0;background:#ffffff0a;border:1px solid #ffffff1f;border-radius:14px;padding:22px 20px;height:100%">
+      <span style="font-size:13px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:#ffd166;padding-bottom:14px;border-bottom:1px solid #ffffff26">PMMF</span>
+            <span style="line-height:1.6">{{ addressLine }}</span>
+    </div>
+    <div style="display:flex;flex-direction:column;gap:14px;min-width:0;background:#ffffff0a;border:1px solid #ffffff1f;border-radius:14px;padding:22px 20px;height:100%">
+      <span style="font-size:13px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:#ffd166;padding-bottom:14px;border-bottom:1px solid #ffffff26">{{ w.resources }}</span>
+      <a href="#contact" style="color:#c8cdf0;line-height:1.4">{{ w.rti }}</a>
+      <a href="#news" style="color:#c8cdf0;line-height:1.4">{{ w.photos }}</a>
+      <a href="#wins" style="color:#c8cdf0;line-height:1.4">{{ w.wins }}</a>
+    </div>
+    <div style="display:flex;flex-direction:column;gap:14px;min-width:0;background:#ffffff0a;border:1px solid #ffffff1f;border-radius:14px;padding:22px 20px;height:100%">
+      <span style="font-size:13px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:#ffd166;padding-bottom:14px;border-bottom:1px solid #ffffff26">{{ w.partners }}</span>
+      <div style="display:flex;align-items:center;gap:10px;color:#fff;font-weight:600;font-weight:500"><img src="./dmf-logo.png" alt="DMF" style="width:30px;height:30px;object-fit:contain;border-radius:50%;background:#fff;flex-shrink:0"><span style="line-height:1.35">{{ networks.items.0 }}</span></div>
+      <div style="display:flex;align-items:center;gap:10px;color:#fff;font-weight:600;font-weight:500"><image-slot id="partner-cwm" shape="circle" placeholder="CWM" style="width:30px;height:30px;flex-shrink:0"></image-slot><span style="line-height:1.35">Council for World Mission</span></div>
+    </div>
+    <div style="display:flex;flex-direction:column;gap:14px;min-width:0;background:#ffffff0a;border:1px solid #ffffff1f;border-radius:14px;padding:22px 20px;height:100%">
+      <span style="font-size:13px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:#ffd166;padding-bottom:14px;border-bottom:1px solid #ffffff26">{{ contact.kicker }}</span>
+      <a href="mailto:pmmf2018@yahoo.com" style="display:flex;align-items:center;gap:10px;color:#fff;font-weight:600"><span style="width:32px;height:32px;border-radius:8px;border:1px solid #ffffff2e;background:#ffffff08;display:grid;place-items:center;flex-shrink:0"><svg width="18" height="14" viewBox="0 0 32 24"><rect x="1" y="1" width="30" height="22" rx="3" fill="#fff"/><path d="M1 3 L16 14 L31 3" fill="none" stroke="#ea4335" stroke-width="3.5" stroke-linejoin="round"/></svg></span>{{ w.email }}</a>
+      <a href="{{ contact.facebook }}" target="_blank" style="display:flex;align-items:center;gap:10px;color:#fff;font-weight:600"><span style="width:32px;height:32px;border-radius:8px;border:1px solid #ffffff2e;background:#ffffff08;display:grid;place-items:center;flex-shrink:0"><svg width="18" height="18" viewBox="0 0 32 32"><rect width="32" height="32" rx="6" fill="#1877f2"/><path d="M21.5 32V20h4l.6-4.7h-4.6v-3c0-1.4.4-2.3 2.3-2.3h2.5V5.8c-.4-.1-1.9-.2-3.6-.2-3.6 0-6 2.2-6 6.2v3.5h-4V20h4v12z" fill="#fff"/></svg></span>Facebook</a>
+      <a href="#" style="display:flex;align-items:center;gap:10px;color:#fff;font-weight:600"><span style="width:32px;height:32px;border-radius:8px;border:1px solid #ffffff2e;background:#ffffff08;display:grid;place-items:center;flex-shrink:0"><svg width="20" height="15" viewBox="0 0 36 26"><rect width="36" height="26" rx="7" fill="#ff0000"/><path d="M14 7.5 L24 13 L14 18.5 Z" fill="#fff"/></svg></span>YouTube</a>
+    </div>
+  </div>
+  <div style="max-width:1320px;margin:0 auto;padding:20px 28px 28px;border-top:1px solid #ffffff1f;font-size:13px;color:#8f97c4">{{ footer }}</div>
+</section>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{&quot;lang&quot;:{&quot;editor&quot;:&quot;enum&quot;,&quot;options&quot;:[&quot;en&quot;,&quot;bn&quot;],&quot;default&quot;:&quot;en&quot;,&quot;tsType&quot;:&quot;'en'|'bn'&quot;}}">
+class Component extends DCLogic {
+  state = { lang: null, ready: !!window.PMMF, menu: null };
+  componentDidMount() {
+    let l = null; try { l = localStorage.getItem('pmmf-lang'); } catch (e) {}
+    if (l) this.setState({ lang: l });
+    if (!window.PMMF) this.t = setInterval(() => { if (window.PMMF) { clearInterval(this.t); this.setState({ ready: true }); } }, 40);
+  }
+  componentWillUnmount() { clearInterval(this.t); }
+  renderVals() {
+    const lang = this.state.lang || this.props.lang || 'en';
+    const c = window.PMMF && window.PMMF[lang];
+    if (!c) return {};
+    const bn = lang === 'bn';
+    const w = bn ? {
+      word1: 'মৎস্যজীবী', word2: 'ফোরাম', heroLine: 'পূর্ব মেদিনীপুরের সমুদ্র, নদী ও পুকুরের মৎস্যজীবীরা — ২০১৮ থেকে সংগঠিত।',
+      who: 'আমরা কারা', waters: 'তিন জল', marine: 'সামুদ্রিক', river: 'নদী', farm: 'মাছচাষ',
+      marineL: 'উপকূলের ছোট নৌকা — মাছ ধরার এলাকা, ট্রলার, নিরাপত্তা, ঘূর্ণিঝড়।', riverL: 'নদী ও মোহনা — নৌকা নিবন্ধন, মাছ ঘাট, দূষণ।', farmL: 'পুকুরের মাছচাষি — টেকসই চাষ, ন্যায্য দাম, ঋণমুক্তি।',
+      women: 'জন মহিলা', womenL: '২০২৫ সালে গঠিত মহিলা শাখা — শুঁটকি, বাজার ও ঋণের প্রশ্নে তাঁদের কণ্ঠ।', wins: 'আমাদের জয়', join: 'যোগ দিন', resources: 'সম্পদ', rti: 'আরটিআই ও নথিপত্র', photos: 'ছবি', partners: 'সহযোগী', email: 'ইমেল',
+    } : {
+      word1: 'Matsyajibi', word2: 'Forum', heroLine: 'Fishers of the sea, rivers and ponds of Purba Medinipur, organised since 2018.',
+      who: 'Who we are', waters: 'Three waters', marine: 'Marine', river: 'Riverine', farm: 'Fish farming',
+      marineL: 'Small boats of the coast: fishing grounds, trawlers, safety, cyclones.', riverL: 'Rivers and estuaries: boat registration, maach ghaats, pollution.', farmL: 'Pond fish-farmers: sustainable farming, fair prices, freedom from debt.',
+      women: 'women', womenL: 'Our women’s wing, formed in 2025, speaks for them on dry fish, markets and credit.', wins: 'What we have won', join: 'Join us', resources: 'Resources', rti: 'RTI & documents', photos: 'Photos', partners: 'Partners', email: 'Email',
+    };
+    const base = c.campaigns.items.map(d => d.text.replace(/\.$|।$/, ''));
+    const ticker = base.concat(base);
+    const winsLoop = c.history.items.concat(c.history.items);
+    const defs = bn ? [
+      ['আমরা কারা', [['লক্ষ্য', '#who'], ['মহিলা', '#women'], ['নেতৃত্ব', '#leaders']]],
+      ['আমাদের কাজ', [['সামুদ্রিক · নদী · মাছচাষ', '#waters'], ['অর্জন', '#wins'], ['খবরে', '#news']]],
+      ['সম্পদ', [['আরটিআই ও নথি', '#contact'], ['ছবি', '#news']]],
+    ] : [
+      ['Who we are', [['Vision', '#who'], ['Women', '#women'], ['Leadership', '#leaders']]],
+      ['What we work on', [['Marine · Riverine · Fish farming', '#waters'], ['Achievements', '#wins'], ['In the news', '#news']]],
+      ['Resources', [['RTI & documents', '#contact'], ['Photos', '#news']]],
+    ];
+    const menus = defs.map(([label, items], i) => ({
+      label, isOpen: this.state.menu === i, items: items.map(([l, href]) => ({ label: l, href })),
+      open: () => this.setState({ menu: i }), toggle: () => this.setState({ menu: this.state.menu === i ? null : i }),
+    }));
+    const pics = { 'lead-1': './leaders/amal-bhunia.jpg', 'lead-2': './leaders/srikanta-das.jpg', 'lead-3': './leaders/debasis-shyamal.jpg' };
+    const leaders = { ...c.leaders, items: c.leaders.items.map(l => ({ ...l, pic: pics[l.id] || '' })) };
+    const addressLine = c.contact.address.join(', ').replace(' — ', ', ');
+    return { ...c, leaders, w, ticker, addressLine, winsLoop, menus, newsTop: c.news.items.slice(0, 3).map((n, i) => ({ ...n, dimg: ['https://lh3.googleusercontent.com/d/1vvtkI5pRqyw8w-JVAWesO9kOLIZIxIP_=w1600', 'https://lh3.googleusercontent.com/d/1cBG0yyso0vwQss6Nx1RLElBR9GvMgn2R=w1600', 'https://lh3.googleusercontent.com/d/1XIgxuC1kOusAC9Lm4RZcGMEfOYrrJmGX=w1600'][i] })),
+      closeMenu: () => this.setState({ menu: null }),
+      toggleLang: () => { const n = bn ? 'en' : 'bn'; try { localStorage.setItem('pmmf-lang', n); } catch (e) {} this.setState({ lang: n }); } };
+  }
+}
+</script>
+</body>
+</html>
